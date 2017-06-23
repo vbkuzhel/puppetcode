@@ -22,7 +22,7 @@ pipeline {
                     hierabranch="master"
                     codebranch="sit"
                 }//if
-                witEnv(["hierabranch=${hierabranch},codebranch=${codebranch}"]){
+                witEnv(["hierabranch=${hierabranch}"]){
                     sh '''
                         echo "hierabranch=${hierabranch},codebranch=${codebranch}"
                     '''
