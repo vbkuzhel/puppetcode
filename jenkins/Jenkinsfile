@@ -22,11 +22,12 @@ pipeline {
                     hierabranch="master"
                     codebranch="sit"
                 }//if
-                witEnv(["hierabranch=${hierabranch}"]){
+                echo "hierabranch=${hierabranch},codebranch=${codebranch}"
+               /* witEnv(["hierabranch=${hierabranch}"]){
                     sh '''
                         echo "hierabranch=${hierabranch},codebranch=${codebranch}"
                     '''
-                }
+                } */
           }//script
          }//steps
        }//stage
