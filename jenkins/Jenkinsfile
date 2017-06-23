@@ -22,13 +22,8 @@ pipeline {
                     hierabranch="master"
                     codebranch="sit"
                 }//if
-                git branch: ${codebranch}, url: 'https://github.com/vbkuzhel/puppetcode.git'
-                //sh "cd puppet/hieradata"
-                //git branch: ${hierabranch}, url: 'https://github.com/vbkuzhel/hieradata.git'
-                //sh "cd ../.."
-                
-    //sh "tree"
-                withEnv(['hierabranch=${hierabranch}', 'codebranch=${codebranch}']) {
+                git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
+                  withEnv(['hierabranch=${hierabranch}']) {
     // some block
                 sh '''
                  
