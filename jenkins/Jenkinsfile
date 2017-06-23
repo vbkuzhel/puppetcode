@@ -1,10 +1,35 @@
-pipeline{
-    agent any
-    stages{
-        stage('test'){
-            steps{
-                echo 'hello world'
-            }
-        }
+def hierabranch="goa"
+def codebranch="goa"
+pipeline {
+   agent none
+    parameters {
+        choice(choices: 'goa\nprod\nuat\ndev\nsit',  description: 'What environment?', name: 'env')
     }
-}
+    stages{
+       stage('Preparation'){
+         steps{
+          script{
+                if (params.env=="prod"){
+                    hierabranch="master"
+                    codebranch="prod"
+                } else if (params.env=="uat"){
+                    hierabranch="master"
+                    codebranch="uat"
+                } else if (params.env=="dev"){
+                    hierabranch="master"
+                    codebranch="dev"
+                } else if (params.env=="sit"){ 
+                    hierabranch="master"
+                    codebranch="sit"
+                }//if
+                witEnv["hierabranch=${hierabranch},codebranch=${codebranch}"]{
+                    sh '''
+                        echo "hierabranch=${hierabranch},codebranch=${codebranch}"
+                    '''
+                }
+          }//script
+         }//steps
+       }//stage
+    }//stages
+}//pipeline              
+
