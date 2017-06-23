@@ -1,0 +1,3 @@
+[submodule "puppetcode/hieradata"]
+	path = puppetcode/hieradata
+	url = git@github.com:vbkuzhel/hieradata.git
