@@ -22,8 +22,12 @@ pipeline {
                     hierabranch="master"
                     codebranch="sit"
                 }//if
-                echo "hierabranch=${hierabranch},codebranch=${codebranch}"
-                withEnv(['hierabranch=${hierabranch}', 'codebranch=${codebranch}']) {
+                git branch: ${codebranch}, url: 'https://github.com/vbkuzhel/puppetcode.git'
+                sh "cd puppet/hieradata"
+                git branch: ${hierabranch}, url: 'https://github.com/vbkuzhel/hieradata.git'
+                sh "cd ../.."
+                sh "tree"
+     /*           withEnv(['hierabranch=${hierabranch}', 'codebranch=${codebranch}']) {
     // some block
                 sh '''
                         echo "hierabranch=${hierabranch},codebranch=${codebranch}"
@@ -35,7 +39,7 @@ pipeline {
                         cd ../..
                         tree
                 '''
-                }
+                }*/
 
                /* witEnv(["hierabranch=${hierabranch}"]){
                     
