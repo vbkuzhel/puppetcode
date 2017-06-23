@@ -27,6 +27,13 @@ pipeline {
     // some block
                 sh '''
                         echo "hierabranch=${hierabranch},codebranch=${codebranch}"
+                        git clone https://github.com/vbkuzhel/puppetcode.git thecode
+                        git checkout "${codebranch}"
+                        cd thecode/puppet/hieradata
+                        git clone https://github.com/vbkuzhel/hieradata.git
+                        git checkout "${hierabranch}"
+                        cd ../../..
+                        tree
                 '''
                 }
 
