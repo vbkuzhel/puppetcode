@@ -23,11 +23,16 @@ pipeline {
                     codebranch="sit"
                 }//if
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
-                  withEnv(['hierabranch=${hierabranch}']) {
+/*                withEnv(['hierabranch=${hierabranch}']) {
     // some block
                 sh '''
-                 
-                        cd puppet/hieradata
+                        if [! -d thecode ]; then 
+                            mkdir thecode
+                        fi
+                        cd thecode
+                        git remote add hieradata-remote https://github.com/vbkuzhel/hieradata.git
+                        git subtree add --prefix=puppetcode/hieradata/ hieradata-remote master
+                        git remote set-head 
                         git clone https://github.com/vbkuzhel/hieradata.git
                         git checkout ${hierabranch}
                         cd ../..
