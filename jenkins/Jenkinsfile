@@ -23,6 +23,11 @@ pipeline {
                     codebranch="sit"
                 }//if
                 echo "hierabranch=${hierabranch},codebranch=${codebranch}"
+                withEnv(['hierabranch=${hierabranch}', 'codebranch=${codebranch}']) {
+    // some block
+                echo "hierabranch=${hierabranch},codebranch=${codebranch}"
+                }
+
                /* witEnv(["hierabranch=${hierabranch}"]){
                     sh '''
                         echo "hierabranch=${hierabranch},codebranch=${codebranch}"
