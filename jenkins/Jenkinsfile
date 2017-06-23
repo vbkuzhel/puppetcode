@@ -23,6 +23,7 @@ pipeline {
                     codebranch="sit"
                 }//if
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
+                sh 'tree'
 /*                withEnv(['hierabranch=${hierabranch}']) {
     // some block
                 sh '''
