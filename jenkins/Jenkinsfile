@@ -1,7 +1,7 @@
 def hierabranch="goa"
 def codebranch="goa"
 pipeline {
-   agent none
+   agent {label 'jenkins'}
     parameters {
         choice(choices: 'goa\nprod\nuat\ndev\nsit',  description: 'What environment?', name: 'env')
     }
