@@ -24,26 +24,10 @@ pipeline {
                 }//if
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 sh 'tree'
-/*                withEnv(['hierabranch=${hierabranch}']) {
-    // some block
-                sh '''
-                        if [! -d thecode ]; then 
-                            mkdir thecode
-                        fi
-                        cd thecode
-                        git remote add hieradata-remote https://github.com/vbkuzhel/hieradata.git
-                        git subtree add --prefix=puppetcode/hieradata/ hieradata-remote master
-                        git remote set-head 
-                        git clone https://github.com/vbkuzhel/hieradata.git
-                        git checkout ${hierabranch}
-                        cd ../..
-                        tree
-                '''
-                }
-
-               /* witEnv(["hierabranch=${hierabranch}"]){
-                    
-                } */
+                sh 'cd puppetcode/hieradata'
+                sh 'tree'
+//                withEnv(['hierabranch=${hierabranch}']) {
+    
           }//script
          }//steps
        }//stage
