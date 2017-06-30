@@ -25,18 +25,18 @@ pipeline {
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 checkout([$class: 'GitSCM', branches: [[name: "*/${hierabranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'puppetcode/hieradata']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/hieradata.git']]])                
                 sh '''
+                jhome=`pwd`
                 if [ -d /tmp/systemexcelence ];then
                     rm -rf /tmp/systemexcelence
                 fi
                     mkdir /tmp/systemexcelence               
                 cp -r * /tmp/systemexcelence
                 cd /tmp
+                if [ -f /tmp/systemexcelence/systemexcelence.tar.gz ]; then rm -f  /tmp/systemexcelence/systemexcelence.tar.gz fi
                 tar -czvf systemexcelence.tar.gz systemexcelence
-                #rm -rf systemexcellence
-                if [ ! -d dist ]; then mkdir dist fi
-                cp systemexcelence.tar.gz dist/
-                #rm -f systemexcelence.tar.gz
-                ls -l 
+                mv systemexcelence.tar.gz $jhome 
+                rm -rf systemexcellence 
+                
                 '''
                 
 //                withEnv(['hierabranch=${hierabranch}']) {
