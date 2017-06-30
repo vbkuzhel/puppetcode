@@ -35,7 +35,7 @@ pipeline {
                 rm -rf /tmp/systemexcelence
                 mkdir dist
                 mv systemexcelence.tar.gz dist/
-                ls -l *gz
+                ls -l 
                 '''
                 
 //                withEnv(['hierabranch=${hierabranch}']) {
