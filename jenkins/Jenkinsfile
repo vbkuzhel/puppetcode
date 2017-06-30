@@ -25,7 +25,7 @@ pipeline {
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 checkout([$class: 'GitSCM', branches: [[name: "*/${hierabranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'puppetcode/hieradata']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/hieradata.git']]])                
                 sh '''
-                if [-d /tmp/systemexcelence ];then
+                if [ -d /tmp/systemexcelence ];then
                     rm -rf /tmp/systemexcelence
                 fi
                     mkdir /tmp/systemexcelence               
