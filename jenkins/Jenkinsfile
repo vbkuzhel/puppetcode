@@ -35,7 +35,7 @@ pipeline {
                 #rm -rf systemexcellence
                 if [ ! -d dist ]; then mkdir dist fi
                 cp systemexcelence.tar.gz dist/
-                rm -f systemexcelence.tar.gz
+                #rm -f systemexcelence.tar.gz
                 ls -l 
                 '''
                 
