@@ -24,7 +24,7 @@ pipeline {
                 }//if
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 checkout([$class: 'GitSCM', branches: [[name: "*/${hierabranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'puppetcode/hieradata']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/hieradata.git']]])                
-                sh '''
+/*                sh '''
                 jhome=`pwd`
                 if [ -d /tmp/systemexcelence ];then
                     rm -rf /tmp/systemexcelence
@@ -38,13 +38,13 @@ pipeline {
                 rm -rf systemexcellence 
                 
                 '''
-                
+*/                
 //                withEnv(['hierabranch=${hierabranch}']) {
     
           }//script
          }//steps
        }//stage
-       stage('scp1'){
+  /*     stage('scp1'){
            agent {label 'jenkins'}
             steps{
                 script{
@@ -62,7 +62,7 @@ pipeline {
                 }//script
 
             }//steps
-       }//stage
+       }//stage */
     }//stages
 }//pipeline              
 
