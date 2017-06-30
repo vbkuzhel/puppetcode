@@ -31,7 +31,9 @@ pipeline {
                     fi
                     mkdir /tmp/systemexcelence
                     cp -r * /tmp/systemexcelence
-                    cd /tmp
+                    cd /tmp 
+                    rm -rf /tmp/systemexcelence/.git
+                    rm -rf /tmp/systemexcelence/puppetcode/hieradata/.git
                     if [ -f /tmp/systemexcelence/systemexcelence.tar.gz ]; 
                     then 
                         rm -f  /tmp/systemexcelence/systemexcelence.tar.gz 
