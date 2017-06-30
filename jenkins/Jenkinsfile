@@ -40,37 +40,22 @@ pipeline {
                     mv systemexcelence.tar.gz $jhome/
                     rm -rf /tmp/systemexcelence
                 '''
-/*                sh '''
-                jhome=`pwd`
-                if [ -d /tmp/systemexcelence ];then
-                    rm -rf /tmp/systemexcelence
-                fi
-                    mkdir /tmp/systemexcelence               
-                cp -r * /tmp/systemexcelence
-                cd /tmp
-                if [ -f /tmp/systemexcelence/systemexcelence.tar.gz ]; then rm -f  /tmp/systemexcelence/systemexcelence.tar.gz fi
-                tar -czvf systemexcelence.tar.gz systemexcelence
-                mv systemexcelence.tar.gz $jhome 
-                rm -rf systemexcellence 
-                
-                '''
-*/                
-//                withEnv(['hierabranch=${hierabranch}']) {
+             
     
           }//script
          }//steps
        }//stage
-  /*     stage('scp1'){
+       stage('scp1'){
            agent {label 'jenkins'}
             steps{
                 script{
                     sshagent(['r1jboss']) {
                         sh '''
-                        scp  -o StrictHostKeyChecking=no /tmp/dist/systemexcelence.tar.gz r1jboss@localhost:/tmp
+                        scp  -o StrictHostKeyChecking=no systemexcelence.tar.gz r1jboss@localhost:/tmp
                         
                         ssh -o UserKnownHostsFile=/dev/null \
                                                 -o StrictHostKeyChecking=no \
-                                                ${sys_exc_user}@${node} "cd /tmp/;tar xzvf systemexcelence.tar.gz"
+                                                r1jboss@localhost "cd /tmp/;tar -xzvf systemexcelence.tar.gz"
                         ls /tmp                                                
                         '''
                     }//sshagent
@@ -78,7 +63,7 @@ pipeline {
                 }//script
 
             }//steps
-       }//stage */
+       }//stage 
     }//stages
 }//pipeline              
 
