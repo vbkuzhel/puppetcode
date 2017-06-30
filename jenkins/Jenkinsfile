@@ -33,6 +33,8 @@ pipeline {
                 cd /tmp
                 tar -czvf systemexcelence.tar.gz systemexcelence
                 rm -rf /tmp/systemexcelence
+                mkdir dist
+                mv systemexcelence.tar.gz dist/
                 ls -l *gz
                 '''
                 
@@ -47,7 +49,8 @@ pipeline {
                 script{
                     sshagent(['r1jboss']) {
                         sh '''
-                        scp  -o StrictHostKeyChecking=no /tmp/systemexcelence.tar.gz r1jboss@localhost:/tmp
+                        scp  -o StrictHostKeyChecking=no /tmp/dist/systemexcelence.tar.gz r1jboss@localhost:/tmp
+                        
                         ssh -o UserKnownHostsFile=/dev/null \
                                                 -o StrictHostKeyChecking=no \
                                                 ${sys_exc_user}@${node} "cd /tmp/;tar xzvf systemexcelence.tar.gz"
