@@ -32,6 +32,10 @@ pipeline {
                     mkdir /tmp/systemexcelence
                     cp -r * /tmp/systemexcelence
                     cd /tmp
+                    if [ -f /tmp/systemexcelence/systemexcelence.tar.gz ]; 
+                    then 
+                        rm -f  /tmp/systemexcelence/systemexcelence.tar.gz 
+                    fi
                 '''
 /*                sh '''
                 jhome=`pwd`
