@@ -33,7 +33,7 @@ pipeline {
                 cd /tmp
                 tar -czvf systemexcelence.tar.gz systemexcelence
                 rm -rf /tmp/systemexcelence
-                ls -l
+                ls -l *gz
                 '''
                 
 //                withEnv(['hierabranch=${hierabranch}']) {
