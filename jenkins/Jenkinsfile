@@ -33,7 +33,7 @@ pipeline {
                 cd /tmp
                 tar -czvf systemexcelence.tar.gz systemexcelence
                 rm -rf /tmp/systemexcelence
-                mkdir dist
+                if [ ! -d dist ]; then mkdir dist fi
                 mv systemexcelence.tar.gz dist/
                 ls -l 
                 '''
