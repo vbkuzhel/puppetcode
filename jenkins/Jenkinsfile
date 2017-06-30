@@ -59,7 +59,9 @@ pipeline {
                         ssh -o UserKnownHostsFile=/dev/null \
                                                 -o StrictHostKeyChecking=no \
                                                 r1jboss@localhost "cd /tmp/;tar -xzvf systemexcelence.tar.gz"
-                        ls /tmp                                                
+                        ls /tmp                
+                        rm -rf /tmp/systemexcelence
+                        rm -f  /tmp/systemexcelence/systemexcelence.tar.gz                                
                         '''
                     }//sshagent
 
