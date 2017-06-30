@@ -40,7 +40,7 @@ pipeline {
                     mv systemexcelence.tar.gz $jhome/
                     rm -rf /tmp/systemexcelence
                 '''
-             
+                archiveArtifacts 'systemexcelence.tar.gz'
     
           }//script
          }//steps
@@ -49,6 +49,7 @@ pipeline {
            agent {label 'jenkins'}
             steps{
                 script{
+                    unarchive mapping: ['systemexcelence.tar.gz': 'systemexcelence.tar.gz']
                     sshagent(['r1jboss']) {
                         sh '''
                         pwd
