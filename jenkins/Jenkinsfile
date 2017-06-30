@@ -25,7 +25,10 @@ pipeline {
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 checkout([$class: 'GitSCM', branches: [[name: "*/${hierabranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'puppetcode/hieradata']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/hieradata.git']]])                
                 sh '''
-                tar -czvf systemexcelence.tar.gz ./
+                mkdir /tmp/systemexcelence
+                cp -r * /tmp/systemexcelence
+                tar -czvf systemexcelence.tar.gz /tmp/systemexcelence
+                rm -rf /tmp/systemexcelence
                 ls -l
                 '''
                 
@@ -33,6 +36,23 @@ pipeline {
     
           }//script
          }//steps
+       }//stage
+       stage('scp1'){
+           agent {label 'jenkins'}
+            steps{
+                script{
+                    sshagent(['r1jboss']) {
+                        sh '''
+                        scp  -o StrictHostKeyChecking=no systemexcelence.tar.gz r1jboss@localhost:/tmp/
+                        #ssh -o UserKnownHostsFile=/dev/null \
+                        #                        -o StrictHostKeyChecking=no \
+                        #                        ${sys_exc_user}@${node} "sudo mkdir"
+                        '''
+                    }//sshagent
+
+                }//script
+
+            }//steps
        }//stage
     }//stages
 }//pipeline              
