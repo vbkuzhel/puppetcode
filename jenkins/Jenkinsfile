@@ -24,7 +24,11 @@ pipeline {
                 }//if
                 git branch: codebranch, url: 'https://github.com/vbkuzhel/puppetcode.git'
                 checkout([$class: 'GitSCM', branches: [[name: "*/${hierabranch}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'puppetcode/hieradata']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vbkuzhel/hieradata.git']]])                
-                sh 'tree'
+                sh '''
+                tar -czvf systemexcelence.tar.gz ./
+                ls -l
+                '''
+                
 //                withEnv(['hierabranch=${hierabranch}']) {
     
           }//script
