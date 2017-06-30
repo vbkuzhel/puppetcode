@@ -38,7 +38,7 @@ pipeline {
                     fi
                     tar -czvf systemexcelence.tar.gz systemexcelence
                     mv systemexcelence.tar.gz $jhome/
-                    rm -rf systemexcellence
+                    rm -rf /tmp/systemexcelence
                 '''
 /*                sh '''
                 jhome=`pwd`
