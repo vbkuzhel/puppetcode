@@ -51,6 +51,7 @@ pipeline {
                 script{
                     sshagent(['r1jboss']) {
                         sh '''
+                        pwd
                         ls
                         scp  -o StrictHostKeyChecking=no systemexcelence.tar.gz r1jboss@localhost:/tmp
                         
