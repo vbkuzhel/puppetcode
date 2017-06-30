@@ -30,7 +30,8 @@ pipeline {
                 fi
                     mkdir /tmp/systemexcelence               
                 cp -r * /tmp/systemexcelence
-                tar -czvf systemexcelence.tar.gz /tmp/systemexcelence
+                cd /tmp
+                tar -czvf systemexcelence.tar.gz systemexcelence
                 rm -rf /tmp/systemexcelence
                 ls -l
                 '''
